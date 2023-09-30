@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tasarim_calismasi/renkler.dart';
 
@@ -14,6 +15,16 @@ class Anasayfa extends StatefulWidget {
 class _AnasayfaState extends State<Anasayfa> {
   @override
   Widget build(BuildContext context) {
+    var ekranBilgisi = MediaQuery.of(context);
+    final double ekranYuksekligi = ekranBilgisi.size.height;
+    final double ekranGenisligi = ekranBilgisi.size.width;
+    if (kDebugMode) {
+      print(ekranYuksekligi);
+    }
+    if (kDebugMode) {
+      print(ekranGenisligi);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -42,38 +53,10 @@ class _AnasayfaState extends State<Anasayfa> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(backgroundColor: anaRenk),
-                  child: Text(
-                    "Cheese",
-                    style: TextStyle(color: yaziRenk),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(backgroundColor: anaRenk),
-                  child: Text(
-                    "Sausage",
-                    style: TextStyle(color: yaziRenk),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(backgroundColor: anaRenk),
-                  child: Text(
-                    "Olive",
-                    style: TextStyle(color: yaziRenk),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(backgroundColor: anaRenk),
-                  child: Text(
-                    "Pepper",
-                    style: TextStyle(color: yaziRenk),
-                  ),
-                ),
+                Chip(icerik: "Cheese"),
+                Chip(icerik: "Sausage"),
+                Chip(icerik: "Olive"),
+                Chip(icerik: "Pepper"),
               ],
             ),
           ),
@@ -140,6 +123,24 @@ class _AnasayfaState extends State<Anasayfa> {
         ],
       ),
       backgroundColor: bodyRenk,
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class Chip extends StatelessWidget {
+  String icerik;
+  Chip({super.key, required this.icerik});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(backgroundColor: anaRenk),
+      child: Text(
+        icerik,
+        style: TextStyle(color: yaziRenk),
+      ),
     );
   }
 }
